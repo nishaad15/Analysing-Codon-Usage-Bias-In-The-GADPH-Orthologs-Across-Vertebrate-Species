@@ -3,7 +3,7 @@ from collections import Counter
 import os
 
 def count_codons(seq):
-    """Count codons in a DNA sequence."""
+   
     codons = [str(seq[i:i+3]).upper() for i in range(0, len(seq)-2, 3) if len(seq[i:i+3]) == 3]
     return Counter(codons)
 
@@ -25,9 +25,9 @@ def analyze_folder(folder_path, output_file):
     all_codons = sorted({codon for counters in all_results.values() for codon in counters})
     
     with open(output_file, "w") as out:
-        # Header
+        
         out.write("Codon\t" + "\t".join(all_results.keys()) + "\n")
-        # Rows 
+        
         for codon in all_codons:
             row = [codon] + [str(all_results[sp].get(codon, 0)) for sp in all_results]
             out.write("\t".join(row) + "\n")
